@@ -12,7 +12,7 @@ export function Footer () {
           rel="noopener noreferrer"
           target="_blank"
           color="secondary" 
-          variant="ligth" 
+          variant="light" 
           aria-label="Zora"
           className="m-4 ml-16 mt-0"
         >

@@ -43,7 +43,7 @@ export function CreateToken() {
     onSuccess(data) {
       console.log('Success', data);
       if (tokenId) return;
-      setTokenId(data.result);
+      setTokenId(data.result as string);
     }
   });
 
@@ -75,7 +75,7 @@ export function CreateToken() {
     });
     setTokenUri(metadata.url);
     
-    setTokenUri("ipfs://bafyreicvasglirukzsyxboin5iztpby74slxezcjzmoqq2ntewnrwdo53y/metadata.json");
+    //setTokenUri("ipfs://bafyreicvasglirukzsyxboin5iztpby74slxezcjzmoqq2ntewnrwdo53y/metadata.json");
   }
   
   useEffect(() => {
@@ -134,8 +134,8 @@ export function CreateToken() {
             as={Link}
             href={`https://testnet.zora.co/collect/zgor:0xe62debb4777791dc36e83fdeabdea4b9411cf476/${tokenId}`}
             color="secondary" 
-            variant="ligth" 
-            aria-label="Cast meme"
+            variant="light" 
+            aria-label="Open in Zora"
             className="mx-16 my-8"
           >
             <Image
