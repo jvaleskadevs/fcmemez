@@ -3,14 +3,16 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { CreateToken } from '../components/CreateToken';
+import { Footer } from '../components/Footer';
 
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Communitary Edition</title>
+        <title>FC Meme Edition</title>
         <meta
-          content="Communitary Edition"
+          content="FC Meme Edition. First Farcaster meme contest organized by Energy. 
+                   Upload your memes and create NFTs on the Zora network."
           name="description"
         />
         <link href="/favicon.ico" rel="icon" />
@@ -19,7 +21,7 @@ const Home: NextPage = () => {
       <main className={`${styles.main} dark text-foreground bg-background`}>
         
         <h1 className="text-6xl font-bold m-16">
-          Communitary Edition
+          FC Meme Edition
         </h1>
         
         <ConnectButton />
@@ -28,11 +30,7 @@ const Home: NextPage = () => {
         
       </main>
 
-      <footer className={styles.footer}>
-        <a href="https://rainbow.me" rel="noopener noreferrer" target="_blank">
-          Made with 💜 and Energy 💫
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 };
