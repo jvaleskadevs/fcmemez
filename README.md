@@ -1,29 +1,23 @@
-This is a [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
+Frontend is live on vercel:
+https://fcmemez.vercel.app/
 
-## Getting Started
+Convert your meme to an nft on Zora, then cast it to the memes channel on FC.
 
-First, run the development server:
+what
+- Anyone may create their own edition (meme) under a multiedition (collection)
+- Community Edition manager (contract) has admin rights on multiedition.
+- Sales will start after creation. Until 0ct, 10. (testing purposes)
+- Rewards and fees go to one of my wallets (testing purposes)
 
-```bash
-npm run dev
-```
+how to
+1. Connect wallet (Zora Testnet)
+2. Upload your meme (jpg,png,jpeg)
+3. Wait until metadata is ready, then click Create button
+4. Confirm transaction
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The Community Edition Manager contract will create a new edition under a multi-edition, after confirming the transaction you will get the link to the minting site for your meme/nft on Zora.
+You also get a warpcast link with a composed cast including the link.
+(I am still managing to cast directly to the memes channel and include the meme too)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about this stack, take a look at the following resources:
-
-- [RainbowKit Documentation](https://rainbowkit.com) - Learn how to customize your wallet connection flow.
-- [wagmi Documentation](https://wagmi.sh) - Learn how to interact with Ethereum.
-- [Next.js Documentation](https://nextjs.org/docs) - Learn how to build a Next.js application.
-
-You can check out [the RainbowKit GitHub repository](https://github.com/rainbow-me/rainbowkit) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Let me know if you have any questions or if anything it is not working as expected.
+Any suggestions or critics are welcome, too!
