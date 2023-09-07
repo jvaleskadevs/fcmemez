@@ -15,9 +15,8 @@ how to
 3. Wait until metadata is ready, then click Create button
 4. Confirm transaction
 
-The Community Edition Manager contract will create a new edition under a multi-edition, after confirming the transaction you will get the link to the minting site for your meme/nft on Zora.
-You also get a warpcast link with a composed cast including the link.
-(I am still managing to cast directly to the memes channel and include the meme too)
+The Community Edition Manager contract will create a new edition (token) on a multi-edition collection, after confirming the transaction you will get the link to the minting site for your meme/nft on Zora.
+You also get a Warpcast link with a composed cast ready to post on the memes channel.
 
-Let me know if you have any questions or if anything it is not working as expected.
-Any suggestions or critics are welcome, too!
+Let me know if you have any questions or if anything is not working as expected.
+Any suggestion or critic is welcome, too!
