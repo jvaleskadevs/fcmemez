@@ -1,4 +1,4 @@
-export const CopyLinearIcon = ({size = 24, width, height, ...props}) => (
+export const CopyLinearIcon = ({size = 24, width = 24, height = 24, ...props}) => (
   <svg
     aria-hidden="true"
     fill="none"
@@ -26,7 +26,7 @@ export const CopyLinearIcon = ({size = 24, width, height, ...props}) => (
   </svg>
 );
 
-export const CheckLinearIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
+export const CheckLinearIcon = ({size = 24, width = 24, height = 24, ...props}) => (
   <svg
     aria-hidden="true"
     fill="none"
