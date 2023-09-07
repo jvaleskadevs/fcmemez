@@ -7,8 +7,9 @@ import {
   useWaitForTransaction,
   useAccount,
 } from "wagmi";
-import { Button, Input, Link, Image } from '@nextui-org/react';
+import { Button, Input, Link, Image, Snippet } from '@nextui-org/react';
 import { FileDropBox } from '../components/FileDropBox';
+import { CopyButton } from '../components/CopyButton';
 import { NFTStorage, File, Blob } from 'nft.storage';
 import { 
   communityEditionManagerAddress, 
@@ -17,7 +18,7 @@ import {
 
 export function CreateToken() {
   const [imageFile, setImageFile] = useState<File>();
-  const [tokenUri, setTokenUri] = useState<string>();
+  const [metadata, setMetadata] = useState<any>();
   const [tokenId, setTokenId] = useState<string>();
   const { address } = useAccount();
 
@@ -31,7 +32,7 @@ export function CreateToken() {
     functionName: "createToken",
     args: [
       "0xE62DeBB4777791DC36E83fDeABDEA4b9411cF476",//process.env.NEXT_PUBLIC_MULTI_EDITION_TESTNET,
-      tokenUri, 
+      metadata?.url, 
       "115792089237316195423570985008687907853269984665640564039457584007913129639935", // max uint256
       process.env.NEXT_PUBLIC_MINTER_FIXED_PRICE_TESTNET,
       Math.floor(Date.now() / 1000), // now
@@ -42,7 +43,7 @@ export function CreateToken() {
     ],
     onSuccess(data) {
       console.log('Success', data);
-      if (tokenId) return;
+      if (isSuccess) return;
       setTokenId(data.result as string);
     }
   });
@@ -73,7 +74,8 @@ export function CreateToken() {
         authors: [{ name: address }]
       }
     });
-    setTokenUri(metadata.url);
+    console.log(metadata);
+    setMetadata(metadata);
     
     //setTokenUri("ipfs://bafyreicvasglirukzsyxboin5iztpby74slxezcjzmoqq2ntewnrwdo53y/metadata.json");
   }
@@ -96,7 +98,7 @@ export function CreateToken() {
             e.preventDefault();
             write?.();
           }}
-          className="flex flex-col gap-2"
+          className="flex flex-col gap-2 min-h-full"
         >
           { !imageFile && <FileDropBox setImageFile={setImageFile} /> }
           
@@ -105,15 +107,15 @@ export function CreateToken() {
           { imageFile && 
             <Input 
               type="text"
-              label="TokenUri"
+              label="Metadata"
               variant="flat"
-              color={tokenUri ? 'success' : 'warning'}
-              value={tokenUri ?? 'uploading...'}
+              color={metadata ? 'success' : 'warning'}
+              value={metadata ? metadata.url : 'uploading...'}
               isReadOnly
             />}
           
           <Button 
-            isDisabled={!write || !tokenUri || isPending} 
+            isDisabled={!write || !metadata || isPending} 
             type="submit" 
             size="lg" 
             color="secondary" 
@@ -133,6 +135,8 @@ export function CreateToken() {
             isIconOnly 
             as={Link}
             href={`https://testnet.zora.co/collect/zgor:0xe62debb4777791dc36e83fdeabdea4b9411cf476/${tokenId}`}
+            rel="noopener noreferrer"
+            target="_blank"            
             color="secondary" 
             variant="light" 
             aria-label="Open in Zora"
@@ -145,7 +149,9 @@ export function CreateToken() {
           <Button 
             isIconOnly 
             as={Link}
-            href={`https://warpcast.com/~/compose?text=Vote+for+my+meme&embeds%5B%5D=https%3A%2F%2Ftestnet.zora.co%2Fcollect%2Fzgor%3A0xe62debb4777791dc36e83fdeabdea4b9411cf476%2F${tokenId}`}
+            href={`https://warpcast.com/~/compose?text=Vote+for+my+meme+by+minting+it+on+Zora&embeds%5B%5D=https%3A%2F%2Ftestnet.zora.co%2Fcollect%2Fzgor%3A0xe62debb4777791dc36e83fdeabdea4b9411cf476%2F${tokenId}+https://nft.storage.link/ipfs${metadata?.data.image.pathname.slice(1)}`}
+            rel="noopener noreferrer"
+            target="_blank"
             color="secondary" 
             variant="solid" 
             aria-label="Cast meme"
@@ -164,15 +170,17 @@ export function CreateToken() {
             value={`https://testnet.zora.co/collect/zgor:0xe62debb4777791dc36e83fdeabdea4b9411cf476/${tokenId}`}
             isReadOnly
             className="mb-4"
-          />  
+            endContent={<CopyButton value={`https://testnet.zora.co/collect/zgor:0xe62debb4777791dc36e83fdeabdea4b9411cf476/${tokenId}`} />}
+          />
           <Input 
             type="text"
             label="Your ready to go cast"
             variant="flat"
             color="success" 
-            value={`https://warpcast.com/~/compose?text=Vote+for+my+meme&embeds%5B%5D=https%3A%2F%2Ftestnet.zora.co%2Fcollect%2Fzgor%3A0xe62debb4777791dc36e83fdeabdea4b9411cf476%2F${tokenId}`}
+            value={`https://warpcast.com/~/compose?text=Vote+for+my+meme+by+minting+it+on+Zora&embeds%5B%5D=https%3A%2F%2Ftestnet.zora.co%2Fcollect%2Fzgor%3A0xe62debb4777791dc36e83fdeabdea4b9411cf476%2F${tokenId}+https://nft.storage.link/ipfs${metadata?.data.image.pathname.slice(1)}`}
             isReadOnly
-          />       
+            endContent={<CopyButton value={`https://warpcast.com/~/compose?text=Vote+for+my+meme+by+minting+it+on+Zora&embeds%5B%5D=https%3A%2F%2Ftestnet.zora.co%2Fcollect%2Fzgor%3A0xe62debb4777791dc36e83fdeabdea4b9411cf476%2F${tokenId}+https://nft.storage.link/ipfs${metadata?.data.image.pathname.slice(1)}`} />}
+          />
         </div>
       }
       

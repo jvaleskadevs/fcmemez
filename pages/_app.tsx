@@ -1,6 +1,6 @@
 import '../styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
-import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { getDefaultWallets, RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import type { AppProps } from 'next/app';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import {
@@ -19,7 +19,7 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'Communitary Edition',
+  appName: 'FC Memez',
   projectId: 'YOUR_PROJECT_ID',
   chains,
 });
@@ -35,7 +35,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <NextUIProvider>
       <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider chains={chains}>
+        <RainbowKitProvider chains={chains} theme={darkTheme({
+          accentColor: '#7828C8',
+          fontStack: 'rounded',
+        })}>
           <Component {...pageProps} />
         </RainbowKitProvider>
       </WagmiConfig>
